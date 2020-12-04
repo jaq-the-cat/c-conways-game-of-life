@@ -13,6 +13,8 @@
 
 typedef bool Board[BOARDW*BOARDH];
 
+Board old;
+
 bool cell_at(Board board, int x, int y) {
     return x >= 0 && y >= 0 && x < BOARDW && y < BOARDH && board[x + y * BOARDW];
 }
@@ -43,10 +45,17 @@ void GOLinit(Board board) {
             board[x + y * BOARDW] = false;
 }
 
+void clone_to(Board a, Board b) {
+}
+
 void GOLtick(Board board) {
+    clone_to(board, old);
     for (int x=0; x<BOARDW; x++)
-        for (int y=0; y<BOARDH; y++)
-            board[x + y * BOARDW] = false;
+        for (int y=0; y<BOARDH; y++) {
+            int n = nb(board, x, y);
+            board[x + y * BOARDW] = (cell_at(old, x, y) && n == 2) || n == 3;
+        }
+
 }
 
 #endif

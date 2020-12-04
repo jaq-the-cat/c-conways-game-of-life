@@ -3,6 +3,11 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 
 #ifndef BOARDW
 #define BOARDW 50
@@ -62,6 +67,8 @@ void GOLtick(Board board) {
         }
         printf("\n");
     }
+    printf("\e[1;1H\e[2J");
+    usleep(20000);
 }
 
 #endif

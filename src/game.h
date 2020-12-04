@@ -67,7 +67,7 @@ void GOLtick(Board board) {
             else
                 printf("  ");
 
-            int n = nb(board, x, y);
+            int n = nb(old, x, y);
             board[x + y * BOARDW] = (cell_at(old, x, y) && n == 2) || n == 3;
         }
         printf("\n");

@@ -1,5 +1,7 @@
 #include "game.h"
 
+Board old;
+
 bool cell_at(Board board, int x, int y) {
     return x >= 0 && y >= 0 && x < BOARDW && y < BOARDH && board[x + y * BOARDW];
 }

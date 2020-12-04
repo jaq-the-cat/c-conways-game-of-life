@@ -73,7 +73,7 @@ void GOLtick(Board board) {
         printf("\n");
     }
     printf("\e[1;1H\e[2J");
-    usleep(20000);
+    usleep(150000);
 }
 
 #endif

@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #ifdef _WIN32
 #include <Windows.h>
@@ -48,7 +49,7 @@ int nb(Board board, int x, int y) {
 void GOLinit(Board board) {
     for (int x=0; x<BOARDW; x++)
         for (int y=0; y<BOARDH; y++)
-            board[x + y * BOARDW] = false;
+            board[x + y * BOARDW] = rand() % 2;
 }
 
 void clone_to(Board a, Board b) {
@@ -61,7 +62,11 @@ void GOLtick(Board board) {
     clone_to(board, old);
     for (int x=0; x<BOARDW; x++) {
         for (int y=0; y<BOARDH; y++) {
-            printf("%d ", cell_at(old, x, y));
+            if (cell_at(old, x, y))
+                printf("🮋🮋");
+            else
+                printf("  ");
+
             int n = nb(board, x, y);
             board[x + y * BOARDW] = (cell_at(old, x, y) && n == 2) || n == 3;
         }

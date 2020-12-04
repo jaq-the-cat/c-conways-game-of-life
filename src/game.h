@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <stdio.h>
 #include <stdbool.h>
 
 #ifndef BOARDW
@@ -46,16 +47,21 @@ void GOLinit(Board board) {
 }
 
 void clone_to(Board a, Board b) {
+    for (int x=0; x<BOARDW; x++)
+        for (int y=0; y<BOARDH; y++)
+            b[x + y * BOARDW] = a[x + y * BOARDW];
 }
 
 void GOLtick(Board board) {
     clone_to(board, old);
-    for (int x=0; x<BOARDW; x++)
+    for (int x=0; x<BOARDW; x++) {
         for (int y=0; y<BOARDH; y++) {
+            printf("%d ", cell_at(old, x, y));
             int n = nb(board, x, y);
             board[x + y * BOARDW] = (cell_at(old, x, y) && n == 2) || n == 3;
         }
-
+        printf("\n");
+    }
 }
 
 #endif

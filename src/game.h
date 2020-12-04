@@ -21,6 +21,7 @@
 typedef bool Board[BOARDW*BOARDH];
 
 Board old;
+
 bool cell_at(Board, int, int);
 int nb(Board, int, int);
 void GOLinit(Board);
